@@ -13,9 +13,13 @@
       pkgs = nixpkgs.legacyPackages.${system};
     in let
       coq-ctags = pkgs.callPackage ./coq-ctags {};
+      move = pkgs.callPackage ./move {};
     in {
       packages = {
-        inherit coq-ctags;
+        inherit coq-ctags move;
+      };
+      devShells = {
+        move = pkgs.callPackage ./move/shell.nix {inherit move;};
       };
     });
 }
