@@ -14,9 +14,10 @@
     in let
       coq-ctags = pkgs.callPackage ./coq-ctags {};
       move = pkgs.callPackage ./move {};
+      universal-ctags = pkgs.callPackage ./universal-ctags {};
     in {
       packages = {
-        inherit coq-ctags move;
+        inherit coq-ctags move universal-ctags;
       };
       devShells = {
         move = pkgs.callPackage ./move/shell.nix {inherit move;};
