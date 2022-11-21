@@ -15,10 +15,31 @@
       coq-ctags = pkgs.callPackage ./coq-ctags {};
       move = pkgs.callPackage ./move {};
       universal-ctags = pkgs.callPackage ./universal-ctags {};
+      vims = pkgs.lib.listToAttrs (
+        map (
+          {
+            vimVersion,
+            python2,
+          }:
+            pkgs.lib.nameValuePair "vim_${builtins.replaceStrings ["."] ["_"] vimVersion}${
+              if python2
+              then "-py2"
+              else ""
+            }"
+            (pkgs.callPackage ./vim {inherit vimVersion python2;})
+        )
+        (pkgs.lib.cartesianProductOfSets {
+          vimVersion = ["7.4" "8.0" "8.1" "8.2" "9.0"];
+          python2 = [false true];
+        })
+      );
+      vim = vims.vim_9_0;
     in {
-      packages = {
-        inherit coq-ctags move universal-ctags;
-      };
+      packages =
+        {
+          inherit coq-ctags move universal-ctags vim;
+        }
+        // vims;
       devShells = {
         move = pkgs.callPackage ./move/shell.nix {inherit move;};
       };

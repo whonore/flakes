@@ -1,0 +1,17 @@
+diff --git a/src/if_python3.c b/src/if_python3.c
+index 53a131348..06965a28c 100644
+--- a/src/if_python3.c
++++ b/src/if_python3.c
+@@ -35,9 +35,9 @@
+ #include <limits.h>
+ 
+ /* Python.h defines _POSIX_THREADS itself (if needed) */
+-#ifdef _POSIX_THREADS
+-# undef _POSIX_THREADS
+-#endif
++/* #ifdef _POSIX_THREADS */
++/* # undef _POSIX_THREADS */
++/* #endif */
+ 
+ #if defined(_WIN32) && defined(HAVE_FCNTL_H)
+ # undef HAVE_FCNTL_H
