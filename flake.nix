@@ -11,7 +11,11 @@
   }:
     flake-utils.lib.eachDefaultSystem (system: let
       pkgs = nixpkgs.legacyPackages.${system};
+    in let
+      coq-ctags = pkgs.callPackage ./coq-ctags {};
     in {
-      packages = {};
+      packages = {
+        inherit coq-ctags;
+      };
     });
 }
