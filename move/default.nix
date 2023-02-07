@@ -11,10 +11,10 @@ rustPlatform.buildRustPackage {
   src = fetchFromGitHub {
     owner = "move-language";
     repo = "move";
-    rev = "6722242844d206d59f60c11cac13ead43a210ced";
-    sha256 = "sha256-EKIaPqQ0ZEKaeIUTNHr2ses68nM3FHXpa9Vj7gtOu54=";
+    rev = "4901410d1f510601ca7fb982989e02c00756cac6";
+    sha256 = "sha256-eikJUrqePHd+gev+1VCLOEJygXj6ix5TFmAcazNJBEg=";
   };
-  cargoSha256 = "sha256-uGYea/riCgXAKecfucWJo+ThVgkwxjZ5yRd7nZOHCW4=";
+  cargoSha256 = "sha256-aMYLj6T0BrM8xEF6ButTaguaYC5N26ifaRnuICZjL98=";
 
   buildInputs =
     if stdenv.isDarwin
