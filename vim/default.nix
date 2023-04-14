@@ -14,11 +14,12 @@
   gui ? false,
 }: let
   # NOTE: pin Python to 3.9 for Vim < 8.2 (https://github.com/vim/vim/issues/6183)
-  python = if python2 then
-    python27 else
-      if lib.versionOlder vimVersion "8.2"
-      then python39
-      else python3;
+  python =
+    if python2
+    then python27
+    else if lib.versionOlder vimVersion "8.2"
+    then python39
+    else python3;
   patch = builtins.getAttr vimVersion (import ./versions.nix);
   vimVersionFull = "${vimVersion}.${patch.patch}";
 in
@@ -27,11 +28,11 @@ in
     version = "${vimVersionFull}-py${python.version}";
 
     src = fetchFromGitHub {
-        owner = "vim";
-        repo = "vim";
-        rev = "v${vimVersionFull}";
-        inherit (patch) sha256;
-      };
+      owner = "vim";
+      repo = "vim";
+      rev = "v${vimVersionFull}";
+      inherit (patch) sha256;
+    };
 
     buildInputs =
       [ncurses xorg.libX11 xorg.libXt python]
