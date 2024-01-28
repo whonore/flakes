@@ -16,7 +16,11 @@
     sha256 = "sha256-ycp9K7IpXBFLE9DV9/iQ+N1H7EMD/tP/KGv2VOXoDvE=";
   };
   "9.0" = {
-    patch = "1291";
-    sha256 = "sha256-Tj4mjJiFpgRNeDAiKXF289aMoVSp1XooAy17RGuIcMA=";
+    patch = "2190";
+    sha256 = "sha256-U2zRIJssBO8PcludMn7h25XsTBgypU/WcshSmiFVdmg=";
+  };
+  "9.1" = {
+    patch = "0059";
+    sha256 = "sha256-68PhcTlCJ0wVFZ0Rnx8ckOe/fjwQuQMH1Eu3pyCH35A=";
   };
 }

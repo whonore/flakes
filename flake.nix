@@ -29,7 +29,7 @@
             (pkgs.callPackage ./vim {inherit vimVersion python2;})
         )
         (pkgs.lib.cartesianProductOfSets {
-          vimVersion = ["7.4" "8.0" "8.1" "8.2" "9.0"];
+          vimVersion = builtins.attrNames (import ./vim/versions.nix);
           python2 = [false true];
         })
       );
