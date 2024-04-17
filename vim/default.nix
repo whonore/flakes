@@ -9,7 +9,7 @@
   python39,
   python3,
   # Configuration
-  vimVersion ? "9.0",
+  vimVersion ? "9.1",
   python2 ? false,
   gui ? false,
 }: let
