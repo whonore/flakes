@@ -33,7 +33,7 @@
           python2 = [false true];
         })
       );
-      vim = vims.vim_9_1;
+      vim = vims.vim_9_2;
     in {
       packages =
         {
