@@ -28,7 +28,7 @@
             }"
             (pkgs.callPackage ./vim {inherit vimVersion python2;})
         )
-        (pkgs.lib.cartesianProductOfSets {
+        (pkgs.lib.cartesianProduct {
           vimVersion = builtins.attrNames (import ./vim/versions.nix);
           python2 = [false true];
         })
