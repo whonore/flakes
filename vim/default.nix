@@ -4,12 +4,16 @@
   fetchFromGitHub,
   darwin,
   ncurses,
-  xorg,
+  libX11,
+  libXt,
   python27,
-  python39,
+  python39 ? (import (fetchTarball {
+    url = "https://github.com/NixOS/nixpkgs/archive/24.05.tar.gz";
+    sha256 = "1lr1h35prqkd1mkmzriwlpvxcb34kmhc9dnr48gkm8hh089hifmx";
+  }) { system = stdenv.hostPlatform.system; }).python39,
   python3,
   # Configuration
-  vimVersion ? "9.1",
+  vimVersion ? "9.2",
   python2 ? false,
   gui ? false,
 }: let
@@ -35,7 +39,7 @@ in
     };
 
     buildInputs =
-      [ncurses xorg.libX11 xorg.libXt python]
+      [ncurses libX11 libXt python]
       ++ lib.optionals stdenv.isDarwin [darwin.apple_sdk.frameworks.Cocoa];
 
     configureFlags =
@@ -70,8 +74,8 @@ in
       ]
       ++ lib.optionals (!stdenv.isDarwin) [
         "--with-x"
-        "--x-includes=${xorg.libX11.dev}/include"
-        "--x-libraries=${xorg.libX11.out}/lib"
+        "--x-includes=${libX11.dev}/include"
+        "--x-libraries=${libX11.out}/lib"
       ];
 
     patches =
